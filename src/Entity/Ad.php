@@ -22,43 +22,51 @@ class Ad
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"default"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(min=10,max=255,minMessage="Le titre doit faire plus de 10 caractères",maxMessage="Le titre doit faire moins de 255 caractères")
+     * @Groups({"default"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"default"})
      */
     private $slug;
 
     /**
      * @ORM\Column(type="float")
+     * @Groups({"default"})
      */
     private $price;
 
     /**
      * @ORM\Column(type="text")
      * @Assert\Length(min=100,minMessage="Merci de mettre au moins 100 caractères")
+     * @Groups({"default"})
      */
     private $introduction;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"default"})
      */
     private $content;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"default"})
      */
     private $coverImage;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="ad",orphanRemoval=true)
+     * @Groups({"default"})
      */
     private $images;
 
@@ -66,6 +74,7 @@ class Ad
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Booking", mappedBy="ad")
+     * @Groups({"default"})
      */
     private $bookings;
 
@@ -74,6 +83,7 @@ class Ad
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comments", mappedBy="ad", orphanRemoval=true)
+     * @Groups({"default"})
      */
     private $comments; 
 

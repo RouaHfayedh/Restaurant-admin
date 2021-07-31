@@ -34,46 +34,7 @@ class AdminAccountController extends AbstractController
         ]);
     }
 
-    /**
-     * Permet d'afficher une page d'inscription
-     * @Route("/admin/register",name="admin_account_register")
-     *
-     * @return Response
-     */
-    public function register(Request $request,UserPasswordEncoderInterface $encoder,ObjectManager $manager){
 
-        $user = new User();
-
-        $form = $this->createForm(RegistrationType::class,$user);
-
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid()){
-
-            $hash = $encoder->encodePassword($user,$user->getHash());
-
-            // on modifie le mot de passe avec le setter
-
-            $user->setHash($hash);
-
-            $customer = \Stripe\Customer::create([
-                'email' => $user->getEmail()
-            ]);
-
-            $manager->persist($user);
-            $manager->flush();
-
-            $this->addFlash("success","Votre compte a bien été créé");
-
-            return $this->redirectToRoute("admin_account_login");
-
-        }
-
-        return $this->render("admin/account/register.html.twig",[
-            'form'=>$form->createView()
-        ]); 
-
-    }
 
     /**
      * Permet la deconnexion de la partie admin
