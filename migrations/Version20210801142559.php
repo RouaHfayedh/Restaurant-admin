@@ -19,7 +19,7 @@ final class Version20210801142559 extends AbstractMigration
 
     public function up(Schema $schema) : void
     {
-        $this->addSql(' INSERT INTO `role_user`(`role_id`, `user_id`) VALUES (1,7);');
+        $this->addSql(' INSERT INTO `role_user`(`role_id`, `user_id`) VALUES (1,1);');
 
     }
 
